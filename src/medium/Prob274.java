@@ -13,19 +13,17 @@ public class Prob274 {
     public static int hIndex(int[] citations) {
         Arrays.sort(citations);
         int h = 0;
+        int paperCount = 1;
         for(int i = citations.length - 1; i >= 0; i--) {
-            if(citations[i] > h) {
-                h++;
-            } else {
-                break;
-            }
+            h = Math.max(h, Math.min(paperCount, citations[i]));
+            paperCount++;
         }
         return h;
 
     }
 
     public static void main(String[] args) {
-        int[] citations = new int[]{1, 3, 1};
+        int[] citations = new int[]{3,0,6,1,5};
         System.out.println(hIndex(citations));
     }
 }
